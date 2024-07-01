@@ -16,3 +16,5 @@ dependencies:
     - torch==1.11.0
     - torchvision==0.7.0
     - glfw==1.12.0
+    - gymnasium==0.26.1
+    - imageio==2.34.2
