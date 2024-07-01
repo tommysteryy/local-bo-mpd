@@ -4,7 +4,7 @@ import argparse
 
 import numpy as np
 import torch
-import gym
+import gymnasium as gym
 
 torch.set_num_threads(1)
 
@@ -19,12 +19,6 @@ from src.optimizers import (
     VanillaBayesianOptimization,
     BayesianGradientAscent,
 )
-
-
-LOG_WANDB = False
-
-if LOG_WANDB: 
-    import wandb
 
 
 if __name__ == "__main__":
@@ -62,14 +56,6 @@ if __name__ == "__main__":
         np.random.seed(current_seed)
         torch.manual_seed(current_seed)
 
-        if LOG_WANDB:
-            wandb_run = wandb.init(
-                project=cfg["wandb_config"]["project_name"],
-                entity=cfg["wandb_config"]["entity"],
-            )
-
-            wandb_run.name = cfg["wandb_config"]["name"]
-
         if cfg["mlp"]["state_normalization"]:
             state_norm = StateNormalizer(
                 normalize_params=mlp.normalize_params,
@@ -89,7 +75,7 @@ if __name__ == "__main__":
             manipulate_state=state_norm,
             manipulate_reward=reward_func,
         )
-        objective_env.env.seed(current_seed)
+        objective_env.env.reset(seed=current_seed)
 
         params, calls_in_iteration = loop(
             params_init=torch.zeros(len_params, dtype=torch.float32),
@@ -98,16 +84,12 @@ if __name__ == "__main__":
             objective=objective_env,
             Optimizer=cfg["method"],
             optimizer_config=cfg["optimizer_config"],
-            verbose=True,
-            wandb_run=wandb_run,
+            verbose=True
         )
 
         parameters[trial] = torch.cat(params).numpy()
         calls[trial] = calls_in_iteration
         timesteps_to_reward[trial] = objective_env.timesteps_to_reward
-
-        if LOG_WANDB:
-            wandb_run.finish()
 
     directory = cfg["out_dir"]
     if not os.path.exists(directory):
