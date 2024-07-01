@@ -1,7 +1,7 @@
 out_dir : './experiments/synthetic_experiments/test_experiment/'
-dimensions : [3, 6]
-num_objectives : 5
-num_samples : 10
+dimensions : [3, 6, 8]
+num_objectives : 2
+num_samples : 3
 noise_variance : 0.01
 factor_lengthscale : 2
 gamma : 0.3

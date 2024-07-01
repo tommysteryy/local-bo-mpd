@@ -61,7 +61,7 @@ def loop(
     calls_in_iteration = []
     objective_w_counter = call_counter(objective)
     optimizer = Optimizer(
-        params_init, objective_w_counter, wandb_run=wandb_run, **optimizer_config
+        params_init, objective_w_counter, **optimizer_config
     )
     if max_iterations:
         for iteration in range(max_iterations):
