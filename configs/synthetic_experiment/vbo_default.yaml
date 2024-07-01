@@ -1,6 +1,6 @@
 method: vbo  # Vanilla bayesian optimization.
 
-out_dir: './experiments/synthetic_experiments/test_experiment/vbo/'
+out_dir: './experiments/synthetic_experiments/20240701/vbo/'
 
 # Either choose max_iterations or max_objective_calls not None.
 max_iterations:
