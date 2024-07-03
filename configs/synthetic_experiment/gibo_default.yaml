@@ -1,10 +1,10 @@
 method: gibo
 
-out_dir: './experiments/synthetic_experiments/20240701/gibo/'
+out_dir: './experiments/synthetic_experiments/20240702/gibo/'
 
 # Either choose max_iterations or max_objective_calls not None.
 max_iterations:
-max_objective_calls: 300 #300
+max_objective_calls: 200 #300
 
 # Manually set hyperparameters.
 set_hypers: True  
