@@ -60,4 +60,4 @@ optimizer_config:
     generate_initial_data:
     standard_deviation_scaling: False
     normalize_gradient: True
-    verbose: False
+    verbose: True
