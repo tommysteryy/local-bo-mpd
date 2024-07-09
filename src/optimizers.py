@@ -1023,6 +1023,7 @@ class MPDOptimizer(AbstractOptimizer):
 
         # Sample with new params from objective and add this to train data.
         # Optionally forget old points (if N > N_max).
+        print(f"Start of step.")
         self.old_f_params = self.f_params
         self.old_f_reward = self.f_reward
         f_params = self.objective(self.params)
@@ -1075,6 +1076,7 @@ class MPDOptimizer(AbstractOptimizer):
 
         for i in range(self.max_samples_per_iteration):
             # Optimize acquistion function and get new observation.
+            print("Acquiring points for gradient")
             new_x, acq_value = self.optimize_acqf(self.acquisition_fcn, self.bounds)
             new_y = self.objective(new_x)
 
@@ -1088,6 +1090,7 @@ class MPDOptimizer(AbstractOptimizer):
                     self.params.detach()
                 )
                 self.p_star = uphill_probability.item()
+                print(f"Uphill prob: {self.p_star}")
 
             if self.wandb_run is not None:
                 self.log_stats(log_rewards=False)
