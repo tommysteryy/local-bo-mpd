@@ -1074,9 +1074,9 @@ class MPDOptimizer(AbstractOptimizer):
 
         self.acquisition_fcn.update_theta_i(self.params)
 
+        print("Acquiring points for gradient")
         for i in range(self.max_samples_per_iteration):
             # Optimize acquistion function and get new observation.
-            print("Acquiring points for gradient")
             new_x, acq_value = self.optimize_acqf(self.acquisition_fcn, self.bounds)
             new_y = self.objective(new_x)
 
@@ -1104,6 +1104,7 @@ class MPDOptimizer(AbstractOptimizer):
 
             self.model.posterior(self.params)
             self.acquisition_fcn.update_K_xX_dx()
+        print("Done acquiring points for gradient")
 
         self.move(method="iter")
 
