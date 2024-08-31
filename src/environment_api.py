@@ -115,9 +115,6 @@ class EnvironmentObjective:
         states, actions, rewards = self._unpack_episode()
         r = 0
         obs, info = self.env.reset()
-        print(f"State: {obs}")
-        # print(obs)
-        # print(info)
         states[0] = self.manipulate_state(obs)
         for t in range(self.max_steps):  # rollout
             actions[t] = self.policy(states[t], params)
