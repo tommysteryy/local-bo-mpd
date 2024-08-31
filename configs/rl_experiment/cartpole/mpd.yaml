@@ -12,10 +12,10 @@ mlp:
         shift:
         scale: 500
 
-trials: 1
+trials: 3
 # Either choose max_iterations or max_objective_calls unequal None.
 max_iterations:
-max_objective_calls: 20
+max_objective_calls: 100
 
 optimizer_config:
     max_samples_per_iteration: 8
