@@ -4,7 +4,7 @@ import argparse
 
 import numpy as np
 import torch
-import gym
+import gymnasium as gym
 
 torch.set_num_threads(1)
 
@@ -89,7 +89,7 @@ if __name__ == "__main__":
             manipulate_state=state_norm,
             manipulate_reward=reward_func,
         )
-        objective_env.env.seed(current_seed)
+        objective_env.env.reset(seed=current_seed)
 
         params, calls_in_iteration = loop(
             params_init=torch.zeros(len_params, dtype=torch.float32),
