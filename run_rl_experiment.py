@@ -99,7 +99,7 @@ if __name__ == "__main__":
             Optimizer=cfg["method"],
             optimizer_config=cfg["optimizer_config"],
             verbose=True,
-            wandb_run=wandb_run,
+            wandb_run=wandb_run if LOG_WANDB else None,
         )
 
         parameters[trial] = torch.cat(params).numpy()
