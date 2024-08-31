@@ -12,9 +12,18 @@
 
 source ~/.bashrc
 
-cd $PROJECT_DIR
+module load miniconda3
 
+# Running the file
+# cd $PROJECT_DIR
 conda activate mpd
+
+cd local-bo-mpd
+
+echo "Running the file now."
+
+python generate_data_synthetic_functions.py -c ./configs/synthetic_experiment/generate_data_default.yaml
+python run_synthetic_experiment.py -c ./configs/synthetic_experiment/mpd_default.yaml -cd ./configs/synthetic_experiment/generate_data_default.yaml
 
 echo "Success"
 
