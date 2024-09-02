@@ -1090,7 +1090,6 @@ class MPDOptimizer(AbstractOptimizer):
                     self.params.detach()
                 )
                 self.p_star = uphill_probability.item()
-                print(f"Uphill prob: {self.p_star}")
 
             if self.wandb_run is not None:
                 self.log_stats(log_rewards=False)
@@ -1292,6 +1291,7 @@ class MPDOptimizer(AbstractOptimizer):
                         print("p", p_star.item())
                         print(tmp_params)
                         print()
+                    print("Moving in direction with uphill probability: ", p_star)
 
                     tmp_params += v_star.squeeze(0) * 0.01
                     v_star, p_star = self.most_likely_uphill_direction(tmp_params)
