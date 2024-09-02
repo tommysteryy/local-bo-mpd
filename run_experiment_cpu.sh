@@ -20,11 +20,16 @@ conda activate mpd
 cd local-bo-mpd
 
 echo "Running the file now."
+export PYTHONUNBUFFERED=TRUE
 
-# python generate_data_synthetic_functions.py -c ./configs/synthetic_experiment/generate_data_default.yaml
-# python run_synthetic_experiment.py -c ./configs/synthetic_experiment/mpd_default.yaml -cd ./configs/synthetic_experiment/generate_data_default.yaml
+python generate_data_synthetic_functions.py -c ./configs/synthetic_experiment/generate_data_default.yaml
+python run_synthetic_experiment.py -c ./configs/synthetic_experiment/mpd_default.yaml -cd ./configs/synthetic_experiment/generate_data_default.yaml
 
-python run_rl_experiment.py -c ./configs/rl_experiment/mpd_default.yaml
+python run_synthetic_experiment.py -c ./configs/synthetic_experiment/gibo_optimize_default.yaml -cd ./configs/synthetic_experiment/generate_data_default.yaml
+python run_synthetic_experiment.py -c ./configs/synthetic_experiment/vbo_optimize_default.yaml -cd ./configs/synthetic_experiment/generate_data_default.yaml
+
+
+# python run_rl_experiment.py -c ./configs/rl_experiment/mpd_default.yaml
 
 echo "Success"
 
