@@ -4,7 +4,7 @@ out_dir: './experiments/synthetic_experiments/test_experiment/rs/'
 
 # Either choose max_iterations or max_objective_calls not None.
 max_iterations: 
-max_objective_calls: 500
+max_objective_calls: 300
 
 optimizer_config:
     step_size: 0.02
