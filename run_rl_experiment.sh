@@ -23,6 +23,7 @@ echo "Running the file now."
 export PYTHONUNBUFFERED=TRUE
 
 python run_rl_experiment.py -c ./configs/rl_experiment/mpd_w_turbo.yaml
+python evaluation_rl_experiment.py -cs configs/rl_experiment/mpd_w_turbo.yaml -path /arc/project/st-gpleiss-1/txu25/local-bo-mpd/test.png
 
 echo "Success"
 
