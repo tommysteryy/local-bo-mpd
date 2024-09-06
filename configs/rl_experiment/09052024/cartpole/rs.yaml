@@ -1,6 +1,6 @@
 method: rs  # (Augmented) random search.
 
-out_dir: './experiments/rl_experiments/cartpole/rs/'
+out_dir: './experiments/rl_experiments/09052024/cartpole/rs/'
 
 environment_name: CartPole-v1
 mlp:
@@ -15,7 +15,7 @@ mlp:
 trials: 3
 # Either choose max_iterations or max_objective_calls unequal None.
 max_iterations: 
-max_objective_calls: 100
+max_objective_calls: 500
 
 optimizer_config:
     step_size: 0.025
