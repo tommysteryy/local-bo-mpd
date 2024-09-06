@@ -88,6 +88,7 @@ class RandomSearch(AbstractOptimizer):
         num_top_directions: Optional[int] = None,
         verbose: bool = True,
         param_args_ignore: List[int] = None,
+        wandb_run=None,
     ):
         """Inits random search optimizer."""
         super(RandomSearch, self).__init__(params_init, objective, param_args_ignore)
