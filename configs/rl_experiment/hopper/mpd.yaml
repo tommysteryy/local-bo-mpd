@@ -15,7 +15,7 @@ mlp:
 trials: 3
 # Either choose max_iterations or max_objective_calls unequal None.
 max_iterations:
-max_objective_calls: 1000
+max_objective_calls: 8000
 
 optimizer_config:
     max_samples_per_iteration: 32
