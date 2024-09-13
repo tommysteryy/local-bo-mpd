@@ -2,7 +2,7 @@
 #SBATCH --mem=64G
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=4
-#SBATCH --time=8:00:00  
+#SBATCH --time=10:00:00  
 #SBATCH --account=st-gpleiss-1
 #SBATCH --mail-user=txu25@student.ubc.ca
 #SBATCH --mail-type=ALL
@@ -22,8 +22,8 @@ cd local-bo-mpd
 echo "Running the file now."
 export PYTHONUNBUFFERED=TRUE
 
-python run_rl_experiment.py -c ./configs/rl_experiment/mpd_w_turbo.yaml
-python evaluation_rl_experiment.py -cs configs/rl_experiment/mpd_w_turbo.yaml -path /arc/project/st-gpleiss-1/txu25/local-bo-mpd/test.png
+python run_rl_experiment.py -c ./configs/rl_experiment/09042024/mpd_w_turbo.yaml
+python evaluation_rl_experiment.py -cs ./configs/rl_experiment/09042024/mpd_w_turbo.yaml -path ./plots/09042024/mpd_w_turbo.png
 
 echo "Success"
 
