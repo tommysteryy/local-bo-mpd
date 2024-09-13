@@ -9,10 +9,10 @@ torch.set_num_threads(1)
 
 from src import config
 from src.loop import loop
-from src.synthetic_functions import (
-    generate_objective_from_gp_post,
+from src.custom_functions import (
+    # generate_objective_from_gp_post,
     compute_rewards,
-    get_lengthscale_hyperprior,
+    # get_lengthscale_hyperprior,
 )
 from src.custom_functions import rover
 
@@ -43,6 +43,10 @@ if __name__ == "__main__":
     if "seed" not in cfg:
         cfg["seed"] = 0
 
+    parameters = {}
+    calls = {}
+    rewards = {}
+
     for trial in range(cfg["trials"]):
         current_seed = cfg["seed"] + trial
         np.random.seed(current_seed)
@@ -72,5 +76,16 @@ if __name__ == "__main__":
             wandb_run=wandb_run,
         )
 
+        parameters[trial] = torch.cat(params).numpy()
+        calls[trial] = calls_in_iteration
+        rewards[trial] = compute_rewards(torch.cat(params))
+
         if LOG_WANDB:
             wandb_run.finish()
+    
+    directory = cfg["out_dir"]
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    np.save(os.path.join(directory, "parameters"), parameters)
+    np.save(os.path.join(directory, "calls"), calls)
+    np.save(os.path.join(directory, "rewards"), rewards)
