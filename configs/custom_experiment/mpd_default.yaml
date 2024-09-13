@@ -5,13 +5,13 @@ method: mpd
 #     entity: quanwustl
 #     name: mpd-iter-delta_1e-2-iso-prior-b=1-N=32
 
-out_dir: './experiments/custom_experiments/090502/mpd/'  # Directory for experiment results.
+out_dir: './experiments/custom_experiment/090502/mpd/'  # Directory for experiment results.
 
 trials: 1
 seed: 10
 # Either choose max_iterations or max_objective_calls unequal None.
 max_iterations:
-max_objective_calls: 3
+max_objective_calls: 500
 
 optimizer_config:
     max_samples_per_iteration: 1

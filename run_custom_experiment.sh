@@ -22,7 +22,7 @@ cd local-bo-mpd
 echo "Running the file now."
 export PYTHONUNBUFFERED=TRUE
 
-python run_custom_experiment.py -c ./configs/custom_experiment/mpd_default.yaml
+python run_custom_experiment.py -c ./configs/custom_experiment/09122024/mpd_default.yaml
 
 echo "Success"
 
