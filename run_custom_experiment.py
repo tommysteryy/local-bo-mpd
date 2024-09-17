@@ -15,6 +15,7 @@ from src.custom_functions import (
     # get_lengthscale_hyperprior,
 )
 from src.custom_functions import rover
+from botorch.test_functions import Ackley
 
 
 LOG_WANDB = False
@@ -22,8 +23,13 @@ LOG_WANDB = False
 if LOG_WANDB:
     import wandb
 
-OBJECTIVE = rover
 DIM = 200
+RUN_ACKLEY = False
+
+if RUN_ACKLEY:
+    OBJECTIVE = Ackley(dim=DIM, negate=True)
+else:
+    OBJECTIVE = rover
 
 
 if __name__ == "__main__":
@@ -69,7 +75,7 @@ if __name__ == "__main__":
             params_init=samples[-1, :],
             max_iterations=cfg["max_iterations"],
             max_objective_calls=cfg["max_objective_calls"],
-            objective=OBJECTIVE,
+            objective=ACKLEY,
             Optimizer=cfg["method"],
             optimizer_config=cfg["optimizer_config"],
             verbose=False,
