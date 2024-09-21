@@ -24,13 +24,6 @@ if LOG_WANDB:
     import wandb
 
 DIM = 200
-RUN_ACKLEY = False
-
-if RUN_ACKLEY:
-    OBJECTIVE = Ackley(dim=DIM, negate=True)
-else:
-    OBJECTIVE = rover
-
 
 if __name__ == "__main__":
 
@@ -38,10 +31,19 @@ if __name__ == "__main__":
         description="Run optimization of synthetic functions."
     )
     parser.add_argument("-c", "--config", type=str, help="Path to config file.")
+    parser.add_argument("-o", "--objective", type=str, help="Objective function. Options: 'ackley', 'rover'.")
 
     args = parser.parse_args()
     with open(args.config, "r") as f:
         cfg = yaml.load(f, Loader=yaml.Loader)
+
+    if args.objective is not None:
+        if args.objective == "ackley":
+            OBJECTIVE = Ackley(dim=DIM, negate=True)
+        elif args.objective == "rover":
+            OBJECTIVE = rover
+        else:
+            raise ValueError("Objective function not recognized. Please choose from 'ackley' or 'rover'.")
 
     # Translate config dictionary.
     cfg = config.insert(cfg, config.insertion_config)
@@ -75,7 +77,7 @@ if __name__ == "__main__":
             params_init=samples[-1, :],
             max_iterations=cfg["max_iterations"],
             max_objective_calls=cfg["max_objective_calls"],
-            objective=ACKLEY,
+            objective=OBJECTIVE,
             Optimizer=cfg["method"],
             optimizer_config=cfg["optimizer_config"],
             verbose=False,

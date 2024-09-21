@@ -6,7 +6,7 @@
 #SBATCH --account=st-gpleiss-1
 #SBATCH --mail-user=txu25@student.ubc.ca
 #SBATCH --mail-type=ALL
-#SBATCH --job-name=mpd_custom
+#SBATCH --job-name=mpd_on_ackley
 #SBATCH --output=slurm/%j.out      # Specify the output file
 
 source ~/.bashrc
@@ -22,7 +22,7 @@ cd local-bo-mpd
 echo "Running the file now."
 export PYTHONUNBUFFERED=TRUE
 
-python run_custom_experiment.py -c ./configs/custom_experiment/09152024/mpd_default.yaml
+python run_custom_experiment.py -c ./configs/turbo_experiment/09212024/mpd_default.yaml -o ackley
 
 echo "Success"
 
