@@ -1023,6 +1023,7 @@ class MPDOptimizer(AbstractOptimizer):
 
         # Sample with new params from objective and add this to train data.
         # Optionally forget old points (if N > N_max).
+        print(f"Start of step.")
         self.old_f_params = self.f_params
         self.old_f_reward = self.f_reward
         f_params = self.objective(self.params)
@@ -1073,6 +1074,7 @@ class MPDOptimizer(AbstractOptimizer):
 
         self.acquisition_fcn.update_theta_i(self.params)
 
+        print("Acquiring points for gradient")
         for i in range(self.max_samples_per_iteration):
             # Optimize acquistion function and get new observation.
             new_x, acq_value = self.optimize_acqf(self.acquisition_fcn, self.bounds)
@@ -1101,6 +1103,7 @@ class MPDOptimizer(AbstractOptimizer):
 
             self.model.posterior(self.params)
             self.acquisition_fcn.update_K_xX_dx()
+        print("Done acquiring points for gradient")
 
         self.move(method="iter")
 
@@ -1288,6 +1291,7 @@ class MPDOptimizer(AbstractOptimizer):
                         print("p", p_star.item())
                         print(tmp_params)
                         print()
+                    print("Moving in direction with uphill probability: ", p_star)
 
                     tmp_params += v_star.squeeze(0) * 0.01
                     v_star, p_star = self.most_likely_uphill_direction(tmp_params)

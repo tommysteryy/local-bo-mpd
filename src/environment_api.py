@@ -6,8 +6,8 @@ from time import time
 import glfw
 
 import torch
-import gym
-from gym import wrappers
+import gymnasium as gym
+from gymnasium import wrappers
 
 
 class EnvironmentObjective:
@@ -114,10 +114,11 @@ class EnvironmentObjective:
         """
         states, actions, rewards = self._unpack_episode()
         r = 0
-        states[0] = self.manipulate_state(self.env.reset())
+        obs, info = self.env.reset()
+        states[0] = self.manipulate_state(obs)
         for t in range(self.max_steps):  # rollout
             actions[t] = self.policy(states[t], params)
-            state, rewards[t], done, _ = self.env.step(actions[t].numpy())
+            state, rewards[t], done, trunc, _ = self.env.step(actions[t].numpy())
             states[t + 1] = self.manipulate_state(state)
             r += self.manipulate_reward(
                 rewards[t], actions[t], states[t + 1], done

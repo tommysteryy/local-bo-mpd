@@ -4,7 +4,7 @@ import yaml
 
 import numpy as np
 import torch
-import gym
+import gymnasium as gym
 
 from src.environment_api import EnvironmentObjective, manipulate_reward
 from src.policy_parameterizations import MLP
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-    method_to_name = {"bga": "GIBO", "rs": "ARS", "vbo": "Vanilla BO"}
+    method_to_name = {"bga": "GIBO", "rs": "ARS", "vbo": "Vanilla BO", "mpd": "MPD"}
     list_interpolated_rewards = []
     list_names_optimizer = []
 

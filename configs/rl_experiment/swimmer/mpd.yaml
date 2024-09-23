@@ -2,7 +2,7 @@ method: mpd
 
 out_dir: './experiments/rl_experiments/swimmer/gibo/'  # Directory for experiment results.
 
-environment_name: Swimmer-v1
+environment_name: Swimmer-v4
 mlp:
     layers: [8,2]
     discretize:

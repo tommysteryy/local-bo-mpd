@@ -2,7 +2,7 @@ method: mpd
 
 out_dir: './experiments/rl_experiments/hopper/gibo/'  # Directory for experiment results.
 
-environment_name: Hopper-v1
+environment_name: Hopper-v4
 mlp:
     layers: [11,3]
     discretize:

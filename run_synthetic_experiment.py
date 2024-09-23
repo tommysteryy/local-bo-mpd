@@ -117,7 +117,7 @@ if __name__ == "__main__":
                 objective=objective,
                 Optimizer=cfg_dim["method"],
                 optimizer_config=cfg_dim["optimizer_config"],
-                verbose=False,
+                verbose=True,
                 wandb_run=wandb_run,
             )
 
