@@ -1,10 +1,11 @@
 method: rs  # (Augmented) random search.
 
-out_dir: './experiments/rl_experiments/hopper/rs/'
+out_dir: './experiments/rl_experiments/09052024/hopper/rs/'
 
 environment_name: Hopper-v1
 mlp:
     layers: [11,3]
+    discretize:
     add_bias: True
     state_normalization: True
     manipulate_reward: 

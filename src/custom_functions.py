@@ -1,3 +1,4 @@
+from typing import List
 import torch
 import numpy as np
 
@@ -96,6 +97,24 @@ class Rover:
 
     def __call__(self, x):
         return batch_rover(x, noise_std=self.noise_std)
+    
+    
+def compute_rewards(params: torch.Tensor, function) -> List[float]:
+    """Compute rewards as return of objective function with given parameters.
+
+    Args:
+        params: Parameters as input for objective function.
+        objective: Objective function.
+        verbose: If True an output is logged.
+
+    Returns:
+        Rewards for parameters.
+    """
+    rewards = []
+    for i, param in enumerate(params):
+        reward = function(param).item()
+        rewards.append(reward)
+    return rewards
 
 
 def rover(x):

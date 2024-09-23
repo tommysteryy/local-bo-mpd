@@ -1,51 +1,49 @@
 method: mpd
 
-out_dir: './experiments/rl_experiments/09052024/hopper/gibo/'  # Directory for experiment results.
+# wandb_config:
+#     project_name: zoofoo-rover
+#     entity: quanwustl
+#     name: mpd-iter-delta_1e-2-iso-prior-b=1-N=32
 
-environment_name: Hopper-v4
-mlp:
-    layers: [11,3]
-    discretize:
-    add_bias: True
-    state_normalization: True
-    manipulate_reward:
-        shift: 1
-        scale: 1000
+out_dir: './experiments/turbo_experiment/09232024/mpd/'  # Directory for experiment results.
 
-trials: 3
+trials: 1
+seed: 10
 # Either choose max_iterations or max_objective_calls unequal None.
 max_iterations:
-max_objective_calls: 8000
+max_objective_calls: 1000
 
 optimizer_config:
-    max_samples_per_iteration: 32
+    max_samples_per_iteration: 1
     OptimizerTorch: sgd
     optimizer_torch_config:
-        lr: 1.
-        weight_decay: 0.00001
-    lr_schedular: {0: 0.6, 1000: 0.5, 2000: 0.3}
+        lr: 0.5
+    lr_schedular:
     Model: derivative_gp
     model_config:
         prior_mean: 0.
-        ard_num_dims: dim_search_space  # If not None, each input dimension gets its own separate lengthscale.
-        N_max: 128
+        ard_num_dims:  # If not None, each input dimension gets its own separate lengthscale.
+        N_max: 32
         lengthscale_constraint:
-            constraint:
+            constraint: interval
             kwargs:
+                lower_bound: 0.0001
+                upper_bound: 10
         lengthscale_hyperprior:
-            prior: uniform
+            prior: normal
             kwargs:
-                a: 0.01
-                b: 0.5
+                loc: 9
+                scale: 1
         outputscale_constraint:
-            constraint: greather_than
+            constraint: interval
             kwargs:
-                lower_bound: 0.001
+                lower_bound: 0.0001
+                upper_bound: 1000
         outputscale_hyperprior:
             prior: normal
             kwargs:
-                loc: 2.
-                scale: 1.
+                loc: 5
+                scale: 1
         noise_constraint:
             constraint:
             kwargs:
@@ -57,20 +55,20 @@ optimizer_config:
         hypers:
             covar_module.base_kernel.lengthscale:
             covar_module.outputscale:
-            likelihood.noise: .02
+            likelihood.noise: .01
         no_noise_optimization: True
     optimize_acqf: bga
     optimize_acqf_config:
         q: 1
-        num_restarts: 5
-        raw_samples: 64
+        num_restarts: 16
+        raw_samples: 256
     # Either choose bounds or delta unequal None.
     bounds:
         lower_bound:
         upper_bound:
-    delta: 0.2
-    epsilon_diff_acq_value: 0.001
+    delta: 1
+    epsilon_diff_acq_value: 0.01
     generate_initial_data:
     standard_deviation_scaling: False
-    normalize_gradient: True
+    normalize_gradient: False
     verbose: True
