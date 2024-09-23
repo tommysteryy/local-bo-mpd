@@ -86,7 +86,7 @@ if __name__ == "__main__":
 
         parameters[trial] = torch.cat(params).numpy()
         calls[trial] = calls_in_iteration
-        rewards[trial] = compute_rewards(torch.cat(params))
+        rewards[trial] = compute_rewards(torch.cat(params), OBJECTIVE)
 
         if LOG_WANDB:
             wandb_run.finish()

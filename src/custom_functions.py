@@ -99,7 +99,7 @@ class Rover:
         return batch_rover(x, noise_std=self.noise_std)
     
     
-def compute_rewards(params: torch.Tensor) -> List[float]:
+def compute_rewards(params: torch.Tensor, function) -> List[float]:
     """Compute rewards as return of objective function with given parameters.
 
     Args:
@@ -112,7 +112,7 @@ def compute_rewards(params: torch.Tensor) -> List[float]:
     """
     rewards = []
     for i, param in enumerate(params):
-        reward = rover(param).item()
+        reward = function(param).item()
         rewards.append(reward)
     return rewards
 
