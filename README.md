@@ -1,3 +1,6 @@
+**Important: This is my version of the repo. The `main` branch has some changes that you probably don't want. Start by reading the [two wiki pages](https://github.com/tommysteryy/local-bo-mpd/wiki), then extract anything you need from the [`run-minimally-changed-mpd` branch]([url](https://github.com/tommysteryy/local-bo-mpd/tree/run-minimally-changed-mpd)).**
+
+
 # Local Bayesian optimization via maximizing probability of descent
 
 This repository contains code for the paper [Local Bayesian optimization via maximizing probability of descent](https://arxiv.org/abs/2210.11662).
