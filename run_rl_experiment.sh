@@ -4,7 +4,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --time=8:00:00  
 #SBATCH --account=st-gpleiss-1
-#SBATCH --mail-user=txu25@student.ubc.ca
+#SBATCH --mail-user=<YOUR-EMAIL>
 #SBATCH --mail-type=ALL
 #SBATCH --job-name=mpd
 #SBATCH --output=slurm/%j.out      # Specify the output file

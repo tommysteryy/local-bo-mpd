@@ -5,7 +5,7 @@
 #SBATCH --gpus=1
 #SBATCH --time=8:00:00  
 #SBATCH --account=st-gpleiss-1-gpu
-#SBATCH --mail-user=txu25@student.ubc.ca
+#SBATCH --mail-user=<YOUR-EMAIL>
 #SBATCH --mail-type=ALL
 #SBATCH --job-name=gibo
 #SBATCH --output=slurm/%j.out    # Specify the error file. The %j will be replaced by the Slurm job id.
